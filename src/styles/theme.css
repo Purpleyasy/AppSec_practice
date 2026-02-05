@@ -1,0 +1,346 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ============================================
+   * Theme Tokens — Single Source of Truth
+   * CHANGEABLE: Update these values to rebrand
+   * ============================================ */
+  
+  /* Core palette - exact hex values from requirements */
+  --palette-neutral-muted: #a19b9f;
+  --palette-primary-dark: #2a3855;
+  --palette-secondary-dark: #434e70;
+  --palette-accent: #8296b3;
+  --palette-supporting: #5f5d74;
+  
+  /* ============================================
+   * UNIFIED BACKGROUND — Blueprint Aesthetic
+   * Same material for nav + content
+   * ============================================ */
+  
+  --bg: #F8FAFE;                             /* Solid light background */
+  --surface: #F8FAFE;                        /* Same solid background */
+  --surface-elevated: #FFFFFF;               /* White cards */
+  
+  /* ============================================
+   * STRUCTURE VIA OUTLINES — Crisp Borders
+   * ============================================ */
+  
+  --border: #D2DEF8;                         /* Standard structural outline */
+  --border-strong: #D2DEF8;                  /* Emphasized borders - same color */
+  --border-subtle: #D2DEF8;                  /* De-emphasized separators */
+  
+  /* ============================================
+   * ACCENT — Interaction States (50% opacity)
+   * ============================================ */
+  
+  --accent: rgba(130, 150, 179, 0.5);        /* Active/selected/hover at 50% */
+  --accent-full: #8296b3;                    /* Full strength for icons/strips */
+  --accent-subtle: rgba(130, 150, 179, 0.15); /* Very subtle hover wash */
+  --accent-border: #8296b3;                  /* Accent borders at full strength */
+  
+  /* ============================================
+   * TEXT — High Contrast on Light Background
+   * ============================================ */
+  
+  --text: #1a1a1a;                           /* Primary text */
+  --text-emphasis: var(--palette-primary-dark); /* Emphasized text */
+  --text-muted: var(--palette-supporting);   /* Muted/secondary text */
+  --text-on-light: var(--palette-primary-dark); /* Text on light button backgrounds */
+  --text-on-dark: #ffffff;                   /* Text on dark backgrounds (rare) */
+  
+  /* ============================================
+   * BUTTONS — Must Contrast Against Blueprint
+   * ============================================ */
+  
+  --button-primary-bg: linear-gradient(135deg, #8596B4 0%, #D6E0F9 100%); /* Soft blue gradient */
+  --button-primary-text: #ffffff;                /* White text */
+  --button-primary-border: transparent;          /* No border */
+  --button-primary-hover-bg: linear-gradient(135deg, #6d81a0 0%, #c1cfe8 100%); /* Slightly darker gradient on hover */
+  --button-primary-hover-text: #ffffff;          /* White text on hover */
+  
+  --button-secondary-bg: linear-gradient(135deg, #8596B4 0%, #D6E0F9 100%); /* Soft blue gradient */
+  --button-secondary-text: #ffffff;              /* White text */
+  --button-secondary-border: transparent;        /* No border */
+  --button-secondary-hover-bg: linear-gradient(135deg, #6d81a0 0%, #c1cfe8 100%); /* Slightly darker gradient on hover */
+  --button-secondary-hover-text: #ffffff;        /* White text on hover */
+  
+  --button-ghost-hover-bg: var(--accent-subtle);
+  
+  /* ============================================
+   * NAVIGATION — Unified with Content
+   * Same background, structure via outlines
+   * ============================================ */
+  
+  --nav-bg: var(--bg);                       /* Same as app background */
+  --nav-text: var(--text);                   /* Same text color as content */
+  --nav-border: var(--border);               /* Structural separator */
+  --nav-hover-bg: var(--accent-subtle);      /* Subtle accent wash */
+  --nav-active-bg: transparent;              /* No solid fill */
+  --nav-active-accent: var(--accent);        /* 50% accent for active strip */
+  --nav-active-text: var(--text-emphasis);   /* Emphasized text when active */
+  
+  /* ============================================
+   * GLASS EFFECT — Subtle, Selective Polish
+   * Only for nav bar and dropdowns
+   * ============================================ */
+  
+  --glass-bg: #F8FAFE;                       /* Same solid background - no transparency */
+  --glass-border: var(--border);             /* Structural outline */
+  --glass-blur: blur(10px);                  /* Subtle backdrop blur */
+  --glass-shadow: 0 4px 12px -2px rgba(42, 56, 85, 0.12), 0 2px 6px -1px rgba(42, 56, 85, 0.08);
+  
+  /* ============================================
+   * DEPTH SYSTEM — 3D Layering via Shadows
+   * ============================================ */
+  
+  --shadow-xs: 0 1px 2px 0 rgba(42, 56, 85, 0.06);
+  --shadow-sm: 0 2px 4px 0 rgba(42, 56, 85, 0.08), 0 1px 2px 0 rgba(42, 56, 85, 0.06);
+  --shadow-md: 0 4px 8px -2px rgba(42, 56, 85, 0.12), 0 2px 6px -1px rgba(42, 56, 85, 0.08);
+  --shadow-lg: 0 8px 16px -4px rgba(42, 56, 85, 0.16), 0 4px 8px -2px rgba(42, 56, 85, 0.1);
+  
+  /* Interactive element depth */
+  --button-shadow: 0 1px 3px 0 rgba(42, 56, 85, 0.1);
+  --button-shadow-hover: 0 3px 6px -1px rgba(42, 56, 85, 0.15), 0 2px 4px -1px rgba(42, 56, 85, 0.1);
+  --input-shadow-inner: inset 0 1px 2px 0 rgba(42, 56, 85, 0.06);
+  
+  /* ============================================
+   * FOCUS & STATES
+   * ============================================ */
+  
+  --focus-ring: var(--accent-full);          /* Full accent for focus rings */
+  
+  /* ============================================
+   * STATUS COLORS — Muted, Blueprint-Aligned
+   * ============================================ */
+  
+  --status-success: #4a7c6d;
+  --status-success-bg: rgba(74, 124, 109, 0.1);
+  --status-failed: #8b5a5f;
+  --status-failed-bg: rgba(139, 90, 95, 0.1);
+  --status-pending: #7a7068;
+  --status-pending-bg: rgba(122, 112, 104, 0.1);
+  
+  /* Danger */
+  --danger: #8b5a5f;
+  --danger-bg: rgba(139, 90, 95, 0.1);
+  
+  /* ============================================
+   * TYPOGRAPHY
+   * ============================================ */
+  
+  --font-size: 18px; /* Projector-optimized */
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  
+  /* ============================================
+   * SPACING
+   * ============================================ */
+  
+  --page-padding: 2rem;
+  --card-padding: 1.5rem;
+  --section-gap: 1.5rem;
+  
+  /* ============================================
+   * Legacy Compatibility Tokens
+   * ============================================ */
+  
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface-elevated);
+  --card-foreground: var(--text);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--text);
+  --primary: var(--palette-primary-dark);
+  --primary-foreground: var(--text-on-dark);
+  --secondary: var(--palette-supporting);
+  --secondary-foreground: var(--text-on-dark);
+  --muted: var(--surface);
+  --muted-foreground: var(--text-muted);
+  --accent-foreground: var(--text);
+  --destructive: var(--danger);
+  --destructive-foreground: var(--text-on-dark);
+  --input: transparent;
+  --input-background: var(--surface);
+  --switch-background: var(--palette-neutral-muted);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--focus-ring);
+  --chart-1: var(--palette-accent);
+  --chart-2: var(--palette-secondary-dark);
+  --chart-3: var(--palette-supporting);
+  --chart-4: var(--palette-neutral-muted);
+  --chart-5: var(--palette-primary-dark);
+  --radius: 0.625rem;
+  --sidebar: var(--nav-bg);
+  --sidebar-foreground: var(--nav-text);
+  --sidebar-primary: var(--accent-full);
+  --sidebar-primary-foreground: var(--text-emphasis);
+  --sidebar-accent: var(--nav-hover-bg);
+  --sidebar-accent-foreground: var(--nav-text);
+  --sidebar-border: var(--nav-border);
+  --sidebar-ring: var(--focus-ring);
+}
+
+.dark {
+  /* Dark mode is not implemented - placeholder for future */
+  --background: var(--palette-primary-dark);
+  --foreground: var(--text-on-dark);
+  --card: var(--palette-secondary-dark);
+  --card-foreground: var(--text-on-dark);
+  --popover: var(--palette-secondary-dark);
+  --popover-foreground: var(--text-on-dark);
+  --primary: var(--text-on-dark);
+  --primary-foreground: var(--palette-primary-dark);
+  --secondary: var(--palette-supporting);
+  --secondary-foreground: var(--text-on-dark);
+  --muted: var(--palette-supporting);
+  --muted-foreground: var(--palette-neutral-muted);
+  --accent: var(--palette-accent);
+  --accent-foreground: var(--text-on-dark);
+  --destructive: var(--danger);
+  --destructive-foreground: var(--text-on-dark);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: var(--focus-ring);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: var(--palette-accent);
+  --chart-2: var(--palette-secondary-dark);
+  --chart-3: var(--palette-supporting);
+  --chart-4: var(--palette-neutral-muted);
+  --chart-5: var(--palette-primary-dark);
+  --sidebar: var(--palette-primary-dark);
+  --sidebar-foreground: var(--text-on-dark);
+  --sidebar-primary: var(--palette-accent);
+  --sidebar-primary-foreground: var(--text-on-dark);
+  --sidebar-accent: var(--palette-secondary-dark);
+  --sidebar-accent-foreground: var(--text-on-dark);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--focus-ring);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    color: var(--text-emphasis);
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    color: var(--text-emphasis);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    color: var(--text-emphasis);
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+
+  /* Link styling */
+  a {
+    color: var(--accent-full);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--palette-accent);
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

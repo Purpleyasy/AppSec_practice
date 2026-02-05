@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="16" fill="#FFE08A"/>
+  <path d="M30 80 V40 Q30 20 45 20 Q55 20 60 35 Q65 20 75 20 Q90 20 90 40 V80" fill="none" stroke="#B82E2E" stroke-width="8" stroke-linecap="round"/>
+  <text x="50%" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#B82E2E">MCD</text>
+</svg>

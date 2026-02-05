@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="16" fill="#F8D4A2"/>
+  <rect x="26" y="30" width="68" height="36" rx="10" fill="#7A2E1A"/>
+  <text x="50%" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#7A2E1A">KRAB</text>
+</svg>

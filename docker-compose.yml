@@ -1,0 +1,10 @@
+services:
+  vaultsync:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      JWT_SECRET: "vaultsync-demo-secret"
+      JWT_ISSUER: "vaultsync"
+      JWT_AUDIENCE: "vaultsync-app"
