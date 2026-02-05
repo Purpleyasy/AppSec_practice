@@ -3,7 +3,11 @@ const GITHUB_API_BASE = 'https://api.github.com';
 function joinPath(...parts) {
   return parts
     .filter(Boolean)
-    .map((part) => String(part).replace(/^\/+|\/+$/g, ''))
+    .map((part) =>
+      String(part)
+        .replace(/\\/g, '/')
+        .replace(/^\/+|\/+$/g, ''),
+    )
     .filter((part) => part.length > 0)
     .join('/');
 }

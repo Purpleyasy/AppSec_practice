@@ -92,6 +92,16 @@ function maskPat(pat) {
   return `${pat.slice(0, 4)}****${pat.slice(-4)}`;
 }
 
+function normalizeBasePath(input) {
+  if (!input) return 'vaultsync';
+  const normalized = String(input)
+    .replace(/\\/g, '/')
+    .replace(/\/+$/g, '')
+    .replace(/^\/+/g, '')
+    .trim();
+  return normalized || 'vaultsync';
+}
+
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body || {};
 
@@ -257,7 +267,7 @@ app.post('/api/customers/:customerId/connectors', (req, res) => {
   const id = randomUUID();
   const timestamp = new Date().toISOString();
   const connectorBranch = branch || 'main';
-  const connectorBasePath = basePath || 'vaultsync';
+  const connectorBasePath = normalizeBasePath(basePath);
 
   // WARNING: Storing PAT in plaintext is intentionally insecure for demo purposes.
   const patMasked = maskPat(pat);
@@ -344,7 +354,7 @@ app.post('/api/customers/:customerId/connectors/:connectorId/sync', async (req, 
     const runFolder = await getNextRunFolder({
       owner: connector.github_owner,
       repo: connector.github_repo,
-      basePath: connector.base_path,
+      basePath: normalizeBasePath(connector.base_path),
       connectorId,
       branch: connector.github_branch,
       token: connector.pat_encrypted_or_plain,
